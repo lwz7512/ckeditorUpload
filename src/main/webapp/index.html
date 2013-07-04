@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>CKEditor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+	
+</style>
+<script type="text/javascript" src="/ckeditorUpload/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">  
+        window.onload = function() {
+        	
+        	var iWidth = '380px'; //弹出窗口的宽度;
+    		var iHeight = '480px'; //弹出窗口的高度;        	
+            CKEDITOR.replace("content",{
+            	lang: 'zh-cn',
+                width: 580,  
+                height: 300,                
+				filebrowserImageUploadUrl : '/ckeditorUpload/ckuploader?Type=Image',
+				filebrowserImageBrowseUrl : '/ckeditorUpload/filebrowser.jsp?Type=Image',
+				filebrowserVideoBrowseUrl : '/ckeditorUpload/filebrowser.jsp?Type=Video',
+				filebrowserWindowWidth: iWidth,
+			    filebrowserWindowHeight: iHeight,			    		   
+			    allowedContent: true,
+            });
+        };
+        
+        function px2Num(px){
+        	return Number(px.substr(0,px.length-2));
+        }
+        
+    </script>  
+</head>
+<body>	
+	<form id="form1" name="form1" method="post"
+		action="/ckeditorUpload/display.jsp">
+		<table width="650" height="400" border="0" align="center">
+			<tr>
+				<td >主题:</td>
+				<td><input name="title" type="text" id="title" size="59"
+					maxlength="80" /></td>
+			</tr>
+			<tr>
+				<td valign="top">内容:</td>
+				<td><textarea cols="80" id="content" name="content"></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Submit" value="提交" /> <input
+					type="reset" name="Reset" value="重置" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
