@@ -36,7 +36,7 @@ public class CKEditorUploadServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static String baseDir;// CKEditor的根目录
-	private static boolean debug = false;// 是否debug模式
+	private static boolean debug = true;// 是否debug模式
 
 	private static Hashtable<String, ArrayList<String>> allowedExtensions;// 允许的上传文件扩展名
 	private static Hashtable<String, ArrayList<String>> deniedExtensions;// 阻止的上传文件扩展名
@@ -147,6 +147,8 @@ public class CKEditorUploadServlet extends HttpServlet {
     }
 	
 	private String createRelativePath(String absPath){
+		absPath = absPath.replace('\\', '/');
+		System.out.println(">>> create relative path for tree node: "+absPath);
 		String[] files = absPath.split(baseDir);
 		String relativePath = contextPath + baseDir + files[1];		
 		return relativePath;
@@ -212,10 +214,10 @@ public class CKEditorUploadServlet extends HttpServlet {
 			//fileName = fileFormatter.format(dNow) + "." + ext;
 			// 获取文件名(无扩展名)
 			//String nameWithoutExt = getNameWithoutExtension(fileName);
-
-			File pathToSave = new File(currentDirPath, fileName);
+			File pathToSave = new File(currentDirPath.replace('\\', '/'), fileName);
 			fileUrl = currentPath + "/" + fileName;
 			if (extIsAllowed(typeStr, ext)) {
+				System.out.println(">>> to write file:\n "+pathToSave.getAbsolutePath());
 				uplFile.write(pathToSave);
 			} else {
 				if (debug)

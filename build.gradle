@@ -1,5 +1,6 @@
 apply plugin: 'jetty'
 apply plugin: 'eclipse'
+apply plugin: 'war'
 
 group = 'ckeditorUpload'
 
@@ -16,7 +17,7 @@ dependencies {
 	compile "commons-io:commons-io:2.2"
 	
 	compile "javax.servlet:servlet-api:2.4"
-	compile "net.sf.ezmorph:ezmorph:1.0.6"
+	compile "net.sf.ezmorph:ezmorph:1.0.6"	
 	
 	compile files('./lib/json-lib-2.4-jdk15.jar')
 }

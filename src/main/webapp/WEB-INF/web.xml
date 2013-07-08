@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE web-app
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
-
-<web-app>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
+      version="2.5">
+      
 	<!-- General description of your web application -->
 	<display-name>ckeditorUpload - Webapp</display-name>
+	
+	<filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>cn.sinonet.snms.filter.CharacterEncodingFilter</filter-class>        
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/formreceiver</url-pattern>
+    </filter-mapping>
+     <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/ckuploader</url-pattern>
+    </filter-mapping>
+	
 	<servlet>
 		<servlet-name>CKEditorUploader</servlet-name>
 		<servlet-class>ckeditor.CKEditorUploadServlet</servlet-class>
@@ -32,10 +46,18 @@
 			<param-value></param-value>
 		</init-param>		
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>CKEditorUploader</servlet-name>
 		<url-pattern>/ckuploader</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FormUploader</servlet-name>
+		<servlet-class>cn.sinonet.snms.servlet.FormDataReceiver</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FormUploader</servlet-name>
+		<url-pattern>/formreceiver</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
